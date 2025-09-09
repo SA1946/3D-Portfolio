@@ -10,16 +10,22 @@ import Menu from "./components/Menu";
 import { MotionConfig } from "framer-motion";
 import { framerMotion } from "./config";
 import Cursor from "./components/Cursor";
+import { Leva } from "leva";
+import Loading from "./components/Loading";
+import { Suspense } from "react";
 
 function App() {
   const [section, setSection] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setMenuOpen(false);
   }, [section]);
+
   return (
-    <div className=" h-screen w-screen bg-gray-800 ">
+    <div className=" h-screen w-screen  ">
+      <Loading isLoaded={isLoaded} setIsLoaded={setIsLoaded} />
       <MotionConfig
         transition={{
           ...framerMotion,
@@ -27,12 +33,22 @@ function App() {
       >
         <Canvas shadows camera={{ position: [0, 3, 10], fov: 50 }}>
           <ScrollControls pages={4} damping={0.1} args={["#ececec"]}>
-            <ScrollManager section={section} onSectionChange={setSection} />
+            <ScrollManager
+              section={section}
+              onSectionChange={setSection}
+              menuOpen={menuOpen}
+            />
             <Scroll>
+              <Suspense>
+                {isLoaded &&
               <Experience section={section} menuOpen={menuOpen} />
+                }
+              </Suspense>
             </Scroll>
             <Scroll html>
-              <Interface />
+              {isLoaded && 
+              <Interface setSection={setSection} />
+              }
             </Scroll>
           </ScrollControls>
         </Canvas>
@@ -43,6 +59,7 @@ function App() {
         />
         <Cursor />
       </MotionConfig>
+      <Leva hidden />
     </div>
   );
 }

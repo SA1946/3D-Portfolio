@@ -4,33 +4,66 @@ Command: npx gltfjsx@6.5.3 public/Models/scene.gltf
 */
 
 import React, { useEffect, useRef } from "react";
-import { useAnimations, useGLTF, useTexture } from "@react-three/drei";
+import {
+  useAnimations,
+  useGLTF,
+  useTexture,
+  useVideoTexture,
+} from "@react-three/drei";
 import { MeshStandardMaterial, SRGBColorSpace } from "three";
 import { sRGBEncoding } from "@react-three/drei/helpers/deprecated";
 import { motion } from "framer-motion-3d";
-import { animate, useMotionValue } from "framer-motion";
-import { useFrame } from "@react-three/fiber";
+// import { animate, useMotionValue } from "framer-motion";
+// import { useFrame } from "@react-three/fiber";
 
-export function My_room1({ section }) {
+export function My_room1(props) {
+  const { section } = props;
   const { nodes, materials } = useGLTF("Models/scene7.gltf");
   const group = useRef();
-  // const { actions } = useAnimations(animations, group);
+
   const texture = useTexture("textures/baked.jpg");
+  const textureVdo = useVideoTexture("videos/demo.mp4");
+
+  texture.flipY = true;
+  texture.colorSpace = SRGBColorSpace;
+  // texture.encoding = sRGBEncoding;
 
   const textureMaterial = new MeshStandardMaterial({
     map: texture,
+    transparent: true,
+    opacity: 1,
   });
 
-  texture.colorSpace = SRGBColorSpace;
-  texture.flipY = true;
-  texture.encoding = sRGBEncoding;
+  // ----------debug later----------
+  // if (!nodes.screen_monitor) {
+  //   console.error("Node 'screen_monitor' not found in GLTF model.");
+  //   return null; // Prevent rendering if node is missing
+  // }
+  // useEffect(() => {
+  //   console.log("GLTF Nodes:", Object.keys(nodes));
+  // }, [nodes]);
+
+  // useEffect(() => {
+  //   console.log("GLTF Nodes:", Object.keys(nodes));
+  // }, [nodes]);
+
+  // --------------------------------
 
   return (
-    <group ref={group} {...section} dispose={null}>
+    <group ref={group} {...props} dispose={null}>
+      {/* <mesh
+        name="screen_monitor"
+        geometry={nodes.screen_monitor.geometry}
+        position={[-2.607, 2.152, 0.678]}
+        rotation={[-1.57, 0.002, 0.01]}
+      >
+        <meshBasicMaterial map={textureVdo} toneMapped={false} />
+      </mesh> */}
+
       <group
         name="laptop_tuf"
-        position={[-1.835, 1.824, 0.572]}
-        scale={[0.099, 0.158, 0.237]}
+        position={[-1.898, 1.686, 0.615]}
+        scale={[0.101, 0.161, 0.242]}
       >
         <mesh
           name="Object_24001"
@@ -137,9 +170,9 @@ export function My_room1({ section }) {
         name="mouse_pad"
         geometry={nodes.mouse_pad.geometry}
         material={materials["phong1SG.001"]}
-        position={[-1.82, 1.805, -0.103]}
+        position={[-1.878, 1.673, 0.087]}
         rotation={[0, 1.571, 0]}
-        scale={[0.196, 0.273, 0.273]}
+        scale={[0.168, 0.273, 0.273]}
       />
       <mesh
         name="small_mats"
@@ -153,13 +186,13 @@ export function My_room1({ section }) {
         name="phone_standing"
         geometry={nodes.phone_standing.geometry}
         material={materials.base}
-        position={[-1.872, 1.798, 1.251]}
+        position={[-1.872, 1.666, 1.251]}
         rotation={[-Math.PI, Math.PI / 3, -Math.PI]}
         scale={[0.058, 0.071, 0.071]}
       />
       <group
         name="phone"
-        position={[-1.883, 1.935, 1.251]}
+        position={[-1.883, 1.803, 1.251]}
         rotation={[-1.222, -Math.PI / 6, 2.077]}
         scale={0.013}
       >
@@ -183,7 +216,7 @@ export function My_room1({ section }) {
         name="monitor_stand"
         geometry={nodes.monitor_stand.geometry}
         material={nodes.monitor_stand.material}
-        position={[-2.708, 1.801, 0.656]}
+        position={[-2.708, 1.669, 0.656]}
       />
       <mesh
         name="quote"
@@ -211,8 +244,8 @@ export function My_room1({ section }) {
           scale: section === 0 ? 0.4 : 0.5,
         }}
         name="cute_cat"
-        position={[2.837, 0.446, -2.26]}
-        rotation={[-Math.PI / 2, 0, Math.PI / 2]}
+        position={[2.786, 0.418, 2.839]}
+        rotation={[-Math.PI / 2, 0, 0]}
       >
         <mesh
           name="Object_0"
@@ -257,9 +290,9 @@ export function My_room1({ section }) {
       </motion.group>
       <group
         name="mouse"
-        position={[-1.825, 1.807, -0.075]}
+        position={[-1.908, 1.675, 0.18]}
         rotation={[0, 1.571, 0]}
-        scale={0.014}
+        scale={0.015}
       >
         <mesh
           name="BOTON_CENTRAL_MAT_Plastic_0"
@@ -279,7 +312,7 @@ export function My_room1({ section }) {
       </group>
       <group
         name="monitor"
-        position={[-2.607, 2.284, 0.678]}
+        position={[-2.607, 2.152, 0.678]}
         rotation={[-1.57, 0.002, 0.01]}
         scale={0.029}
       >
@@ -309,16 +342,13 @@ export function My_room1({ section }) {
           material={materials["Material.008"]}
         />
       </group>
-      <motion.mesh
-        scale={[0, 0, 0]}
-        animate={{
-          scale: section === 0 ? 0.1 : 0.12,
-        }}
+      <mesh
         name="chair"
         geometry={nodes.chair.geometry}
         material={materials.None}
-        position={[-1.099, 0.895, 1.353]}
+        position={[-1.243, 0.84, 1.184]}
         rotation={[-Math.PI / 2, 0, 0]}
+        scale={[0.08, 0.08, 0.093]}
       />
       <motion.group
         scale={[0, 0, 0]}
@@ -326,7 +356,7 @@ export function My_room1({ section }) {
           scale: section === 0 ? 0.05 : 0.08,
         }}
         name="coffee"
-        position={[-1.726, 1.795, 2.081]}
+        position={[-1.726, 1.663, 2.081]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
         <mesh
@@ -349,7 +379,7 @@ export function My_room1({ section }) {
         name="table"
         position={[-2.282, 0.384, 0.646]}
         rotation={[Math.PI / 2, 0, -Math.PI / 2]}
-        scale={[1.753, 1.753, 1.918]}
+        scale={[1.753, 1.753, 1.739]}
       >
         <mesh
           name="Object_0008"
@@ -398,8 +428,7 @@ export function My_room1({ section }) {
         />
       </group>
       <group
-        name="lamp"
-        position={[-2.766, 1.798, 2.091]}
+        position={[-2.766, 1.666, 2.091]}
         rotation={[-Math.PI / 2, 0, 2.094]}
         scale={[0.029, 0.029, 0.031]}
       >
@@ -442,7 +471,7 @@ export function My_room1({ section }) {
         name="dog_meme"
         geometry={nodes.dog_meme.geometry}
         material={textureMaterial}
-        position={[-2.581, 1.874, 1.95]}
+        position={[-2.581, 1.742, 1.95]}
         rotation={[0, 1.222, 0]}
       />
       <group name="Plane" position={[0, 0.404, 0]} scale={3}>
@@ -462,3 +491,4 @@ export function My_room1({ section }) {
 }
 
 useGLTF.preload("Models/scene7.gltf");
+useTexture.preload("textures/baked.jpg");

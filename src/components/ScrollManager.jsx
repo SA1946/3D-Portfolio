@@ -38,7 +38,9 @@ const ScrollManager = ({ section, onSectionChange }) => {
     scrollRef.current = data.scroll.current;
   });
 
-  return <>ScrollManager</>;
+  return null;
 };
 
 export default ScrollManager;
+
+

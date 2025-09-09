@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = -10;
+let mouseY = -10;
 let outlineX = 0;
 let outlineY = 0;
 const Cursor = () => {
