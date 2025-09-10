@@ -11,7 +11,7 @@ import {
   useVideoTexture,
 } from "@react-three/drei";
 import { MeshStandardMaterial, SRGBColorSpace } from "three";
-import { sRGBEncoding } from "@react-three/drei/helpers/deprecated";
+// import { sRGBEncoding } from "@react-three/drei/helpers/deprecated";
 import { motion } from "framer-motion-3d";
 // import { animate, useMotionValue } from "framer-motion";
 // import { useFrame } from "@react-three/fiber";
@@ -21,10 +21,10 @@ export function My_room1(props) {
   const { nodes, materials } = useGLTF("Models/scene7.gltf");
   const group = useRef();
 
-  const texture = useTexture("textures/baked.jpg");
+  const texture = useTexture("textures/baked_again.jpg");
   const textureVdo = useVideoTexture("videos/demo.mp4");
 
-  texture.flipY = true;
+  texture.flipY = false;
   texture.colorSpace = SRGBColorSpace;
   // texture.encoding = sRGBEncoding;
 
@@ -35,7 +35,7 @@ export function My_room1(props) {
   });
 
   // ----------debug later----------
-  // if (!nodes.screen_monitor) {
+  // if (!nodes.screen_monitor001) {
   //   console.error("Node 'screen_monitor' not found in GLTF model.");
   //   return null; // Prevent rendering if node is missing
   // }
@@ -52,7 +52,7 @@ export function My_room1(props) {
   return (
     <group ref={group} {...props} dispose={null}>
       {/* <mesh
-        name="screen_monitor"
+        name="screen_monitor001"
         geometry={nodes.screen_monitor.geometry}
         position={[-2.607, 2.152, 0.678]}
         rotation={[-1.57, 0.002, 0.01]}
@@ -141,7 +141,7 @@ export function My_room1(props) {
           material={materials.material_13}
         />
       </group>
-      <group name="sofa" position={[0.243, 0.396, -2.12]} scale={1.569}>
+      <group name="sofa" position={[1, 0.396, -2.12]} scale={1.569}>
         <mesh
           name="Freedom_Sofa_002002"
           geometry={nodes.Freedom_Sofa_002002.geometry}
@@ -178,7 +178,7 @@ export function My_room1(props) {
         name="small_mats"
         geometry={nodes.small_mats.geometry}
         material={materials.material_1_002}
-        position={[0.233, 0.477, -0.951]}
+        position={[1, 0.477, -0.951]}
         rotation={[Math.PI, -0.754, Math.PI]}
         scale={1.86}
       />
@@ -428,6 +428,7 @@ export function My_room1(props) {
         />
       </group>
       <group
+        name="lamp"
         position={[-2.766, 1.666, 2.091]}
         rotation={[-Math.PI / 2, 0, 2.094]}
         scale={[0.029, 0.029, 0.031]}
@@ -491,4 +492,4 @@ export function My_room1(props) {
 }
 
 useGLTF.preload("Models/scene7.gltf");
-useTexture.preload("textures/baked.jpg");
+useTexture.preload("textures/baked_again.jpg");

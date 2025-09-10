@@ -40,16 +40,18 @@ function App() {
             />
             <Scroll>
               <Suspense>
-                {isLoaded &&
-              <Experience section={section} menuOpen={menuOpen} />
-                }
+                {isLoaded && (
+                  <Experience section={section} menuOpen={menuOpen} />
+                )}
               </Suspense>
+              {/* <Experience section={section} menuOpen={menuOpen} /> */}
             </Scroll>
             <Scroll html>
-              {isLoaded && 
-              <Interface setSection={setSection} />
-              }
+              {isLoaded && <Interface setSection={setSection} />}
             </Scroll>
+            {/* <Scroll html>
+              <Interface setSection={setSection} />
+            </Scroll> */}
           </ScrollControls>
         </Canvas>
         <Menu

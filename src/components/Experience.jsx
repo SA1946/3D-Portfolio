@@ -10,6 +10,7 @@ import { framerMotion } from "../config";
 import { Euler, Quaternion, Vector3 } from "three";
 import { MyProjects } from "./MyProjects";
 import Background from "./Background";
+import { Scene_again } from "../../Scene_again";
 
 const Experience = ({ menuOpen }) => {
   const { viewport } = useThree();
@@ -161,8 +162,9 @@ const Experience = ({ menuOpen }) => {
           resolution={256}
           color="#000000"
           /> */}
-        {/* <My_room /> */}
-        <My_room1 section={section} />
+
+        {/* <My_room1 section={section} /> */}
+        <Scene_again section={section} />
       </motion.group>
 
       <directionalLight position={[-5, 3, 5]} intensity={0.4} />
