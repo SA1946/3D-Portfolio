@@ -13,6 +13,7 @@ import {
 import { MeshStandardMaterial, SRGBColorSpace } from "three";
 // import { sRGBEncoding } from "@react-three/drei/helpers/deprecated";
 import { motion } from "framer-motion-3d";
+import { sRGBEncoding } from "@react-three/drei/helpers/deprecated";
 // import { animate, useMotionValue } from "framer-motion";
 // import { useFrame } from "@react-three/fiber";
 
@@ -26,7 +27,7 @@ export function My_room1(props) {
 
   texture.flipY = false;
   texture.colorSpace = SRGBColorSpace;
-  // texture.encoding = sRGBEncoding;
+  texture.encoding = sRGBEncoding;
 
   const textureMaterial = new MeshStandardMaterial({
     map: texture,

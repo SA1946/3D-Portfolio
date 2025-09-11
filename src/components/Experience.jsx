@@ -2,15 +2,15 @@ import { motion } from "framer-motion-3d";
 import { Avata } from "./Avata";
 import { Environment, Sky, useScroll } from "@react-three/drei";
 
-import { My_room1 } from "./My_room1";
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, scale, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { framerMotion } from "../config";
-import { Euler, Quaternion, Vector3 } from "three";
+// import { Euler, Quaternion, Vector3 } from "three";
 import { MyProjects } from "./MyProjects";
 import Background from "./Background";
-import { Scene_again } from "../../Scene_again";
+import { Scene_again1 } from "../../Scene_again1";
+import { Final_scene } from "../../Final_scene";
 
 const Experience = ({ menuOpen }) => {
   const { viewport } = useThree();
@@ -22,7 +22,7 @@ const Experience = ({ menuOpen }) => {
 
   const isMobilePhone = window.innerWidth < 768;
   const responsivePhone = viewport.width / 12;
-  const myRoomScaleRatio = Math.max(0.4, Math.min(0.9 * responsivePhone, 0.9));
+  const myRoomScaleRatio = Math.max(0.3, Math.min(0.9 * responsivePhone, 0.9));
 
   const cameraPositionX = useMotionValue(1); // need to initial first
   const cameraLookAtX = useMotionValue(1);
@@ -87,9 +87,9 @@ const Experience = ({ menuOpen }) => {
         animate={
           section === 0
             ? {
-                x: isMobilePhone ? myRoomScaleRatio + -0.9 : 0.2,
-                y: isMobilePhone ? myRoomScaleRatio + -1.6 : 0.83,
-                z: isMobilePhone ? myRoomScaleRatio + 2.5 : 2.65,
+                x: isMobilePhone ? myRoomScaleRatio + -0.93 : 0.2,
+                y: isMobilePhone ? myRoomScaleRatio + -1.4 : 0.83,
+                z: isMobilePhone ? myRoomScaleRatio + 2.4 : 2.65,
                 scaleX: myRoomScaleRatio,
                 scaleY: myRoomScaleRatio,
                 scaleZ: myRoomScaleRatio,
@@ -148,7 +148,7 @@ const Experience = ({ menuOpen }) => {
         scale={[myRoomScaleRatio, myRoomScaleRatio, myRoomScaleRatio]}
         rotation-y={-Math.PI / 4}
         animate={{
-          y: isMobilePhone ? -viewport.height / 6 : 0,
+          y: isMobilePhone ? -viewport.height / 7 : 0,
         }}
         transition={{
           duration: 0.8,
@@ -163,8 +163,9 @@ const Experience = ({ menuOpen }) => {
           color="#000000"
           /> */}
 
-        {/* <My_room1 section={section} /> */}
-        <Scene_again section={section} />
+        {/* <Scene_again section={section} /> */}
+
+        <Final_scene section={section} />
       </motion.group>
 
       <directionalLight position={[-5, 3, 5]} intensity={0.4} />
