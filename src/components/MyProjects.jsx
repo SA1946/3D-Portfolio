@@ -16,7 +16,7 @@ export const projects = [
   {
     title: "portfolio_v1.0",
     url: "https://portfolio-v10-woad.vercel.app/",
-    image: "projects/retro_portfolio.png",
+    image: "projects/retro_portfolio.webp",
     description:
       "I created a fun and unique portfolio website that looks like an old-school computer terminal.",
   },
