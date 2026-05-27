@@ -9,7 +9,6 @@ import { framerMotion } from "../config";
 // import { Euler, Quaternion, Vector3 } from "three";
 import { MyProjects } from "./MyProjects";
 import Background from "./Background";
-import { Scene_again1 } from "../../Scene_again1";
 import { Final_scene } from "../../Final_scene";
 
 const Experience = ({ menuOpen }) => {

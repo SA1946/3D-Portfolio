@@ -8,7 +8,7 @@ const Loading = ({ isLoaded, setIsLoaded }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisplayProgress(progress);
-    }, 100);
+    }, 50);
     return () => clearTimeout(timer);
   }, [progress]);
 

@@ -10,9 +10,8 @@ import {
   useAnimations,
   useGLTF,
   useTexture,
-  useVideoTexture,
 } from "@react-three/drei";
-import { MeshStandardMaterial, SRGBColorSpace } from "three";
+import { MeshStandardMaterial, SRGBColorSpace, VideoTexture } from "three";
 import { motion } from "framer-motion-3d";
 import { sRGBEncoding } from "@react-three/drei/helpers/deprecated";
 import { scale } from "framer-motion";
@@ -21,26 +20,51 @@ import { scale } from "framer-motion";
 export function Final_scene(props) {
   const { section } = props;
   const group = useRef();
-  const { scene, animations } = useGLTF("Models/final_scene.gltf");
+  const { scene, animations } = useGLTF("Models/final_scene.glb");
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   const { actions } = useAnimations(animations, group);
 
-  const texture = useTexture("textures/final_baked.jpg");
+  const texture = useTexture("textures/final_baked.webp");
 
   const quoteText = useTexture("textures/Quote.png");
-  const textureVdo = useVideoTexture("videos/demo.mp4");
-  const textureVdo2 = useVideoTexture("videos/coding.mp4");
+
+  // Load video texture asynchronously to prevent suspending React on large video files
+  const textureVdo = useMemo(() => {
+    const v = document.createElement("video");
+    v.src = "videos/demo.mp4";
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.autoplay = true;
+    v.setAttribute("webkit-playsinline", "true");
+    v.play().catch((err) => console.log("video demo error", err));
+    const tex = new VideoTexture(v);
+    tex.colorSpace = SRGBColorSpace;
+    tex.flipY = false;
+    return tex;
+  }, []);
+
+  const textureVdo2 = useMemo(() => {
+    const v = document.createElement("video");
+    v.src = "videos/coding.mp4";
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.autoplay = true;
+    v.setAttribute("webkit-playsinline", "true");
+    v.play().catch((err) => console.log("video coding error", err));
+    const tex = new VideoTexture(v);
+    tex.colorSpace = SRGBColorSpace;
+    tex.flipY = false;
+    return tex;
+  }, []);
 
   texture.flipY = false;
   quoteText.flipY = true;
-  textureVdo.flipY = false;
-  textureVdo2.flipY = false;
   // texture.colorSpace = SRGBColorSpace;
   texture.encoding = sRGBEncoding;
   quoteText.colorSpace = SRGBColorSpace;
-  textureVdo2.colorSpace = SRGBColorSpace;
-  textureVdo.colorSpace = SRGBColorSpace;
 
   const textureMaterial = new MeshStandardMaterial({
     map: texture,
@@ -570,5 +594,5 @@ export function Final_scene(props) {
   );
 }
 
-useGLTF.preload("/final_scene.gltf");
-useTexture.preload("textures/final_baked.jpg");
+useGLTF.preload("Models/final_scene.glb");
+useTexture.preload("textures/final_baked.webp");

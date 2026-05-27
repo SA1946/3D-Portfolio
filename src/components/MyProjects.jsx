@@ -9,7 +9,7 @@ export const projects = [
   {
     title: "synsa_store",
     url: "https://synsa-store.vercel.app/",
-    image: "projects/synsa_store.png",
+    image: "projects/synsa_store.webp",
     description:
       "A modern tech store SPA built with React, React Router DOM, and Tailwind CSS. Features responsive",
   },
@@ -23,21 +23,21 @@ export const projects = [
   {
     title: "Accessories-Store",
     url: "https://sa1946.github.io/Accessories-Store-with-Bootstrap/",
-    image: "projects/accessories_store.png",
+    image: "projects/accessories_store.webp",
     description:
       "This repository contains a Bootstrap and Basic JavaScript project that replicates an accessories store website.",
   },
   {
     title: "test-english",
     url: "https://sa1946.github.io/test-english/",
-    image: "projects/clone-test_english.png",
+    image: "projects/clone-test_english.webp",
     description:
       "This repository contains a clone of the Test English website, created using Bootstrap and basic JavaScript.",
   },
   {
     title: "Object_Detection",
     url: "https://github.com/SA1946/Object_Detection",
-    image: "projects/obj_detection.png",
+    image: "projects/obj_detection.webp",
     description:
       "This project is object detection using YOLOv8. The system can detect and classify multiple objects from camera, images and videos.",
   },
